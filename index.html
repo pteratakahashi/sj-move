@@ -7,7 +7,7 @@
 // 渡すのは心臓人狼の保存（hw2_*）とログイン（sb-…）だけ。行き先は shinzoujinro.com に限る
 (function(){
   let r='https://shinzoujinro.com/';
-  try{const u=new URL(new URLSearchParams(location.search).get('r')||r);if(u.protocol==='https:'&&/^(www\.)?shinzoujinro\.com$/.test(u.hostname))r=u.href.split('#')[0]}catch(e){}
+  try{const u=new URL(new URLSearchParams(location.search).get('r')||r);if(/^https?:$/.test(u.protocol)&&/^(www\.)?shinzoujinro\.com$/.test(u.hostname))r=u.href.split('#')[0]}catch(e){}
   let v='none';
   try{const d={};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(/^hw2_|^sb-evxljdiiyzynvhcznpou-/.test(k))d[k]=localStorage.getItem(k)}
     if(Object.keys(d).length){const by=new TextEncoder().encode(JSON.stringify(d));let b='';for(const x of by)b+=String.fromCharCode(x);v=btoa(b).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')}}catch(e){}
